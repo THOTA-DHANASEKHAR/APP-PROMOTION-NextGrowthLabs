@@ -1,0 +1,5 @@
+Flask is often chosen when you prefer a lightweight and minimalistic framework for small or simple projects, allowing for customization and flexibility in project structure and implementation, ideal for RESTful APIs and learning purposes.
+
+Django, on the other hand, is favored for rapid development of complex applications with its "batteries included" approach, providing a comprehensive set of features and conventions, especially suitable for projects with complex database relationships, built-in admin interface needs, and scalability requirements.
+
+Flask is great for smaller, custom projects with specific needs, while Django shines in larger-scale projects that require quick development, convention-based workflows, and extensive built-in functionalities.

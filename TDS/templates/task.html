@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include 'links.html' %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+
+<body>
+    <div class="topnav">
+        <h2>Hello {{ user.username }}</h2>
+
+    </div>
+    <div class="container-fluid p-4 " style="padding-right:5% !important;">
+
+        <div class="row">
+            <div class="col-2 p-5" style="padding-top:0px !important; " id="myDIV">
+                <a href="Home"><button class="btn1 col-12 " ><i class="bi bi-house-door-fill"></i> Home</button></a><br><br>
+                {% if user.is_superuser %}
+                    <a href="Add_App"><button class="btn1 col-12"><i class="bi bi-plus-lg"></i> Add Apps</button></a><br><br>
+                {% endif %}
+                {% if not user.is_superuser %}
+                    <a href="profile"><button class="btn1 col-12"><i class="bi bi-person-fill"></i> Profile</button></a><br><br>
+                    <a href="points"><button class="btn1 col-12"><i class="bi bi-database-fill"></i> Points</button></a><br><br>
+                    <a href="task"><button class="btn1 col-12 active"><i class="bi bi-calendar-check"></i> Task</button></a><br><br>
+                    {% endif %}
+                    <a href="logout"><button class="btn1 col-12" ><i class="bi bi-power"></i> Logout</button></a><br><br>
+            </div >
+
+            <div class="col-10 p-5 bg-light" >
+
+<!------------------------------------------------------------------------------------------------->
+                <section style="padding:0% 10%; ">
+                    {% for app in app_details %}
+                    <div class="row border rounded border-secondary p-2 container-fluid">
+                        <div class="col-2">
+                            <img class="flex-shrink-0 img-fluid border rounded" src="/media/{{app.AppIcon}}" alt=""
+                                style="width: 100px; height: 100px;"><!----/media/AppIcons/--->
+                        </div>
+                        <div class="col-4 p-2">
+                        <h3 class="mb-3">{{app.AppName}}</h3>
+                            <span href="#">{{app.AppCategory}}</span>
+                            <span href="#">( {{app.AppSubCategory}} )</span>
+
+                        </div>
+                        <div class="col-4 p-2">
+                            <button type="button" class="btn col-12">{{app.points}} Points Credited</button>
+                        </div>
+                        <div class="col-2 p-3">
+                                <button type="button" class="btn btn-success col-12">Completed</button>
+                        </div>
+
+                    </div><br>
+                     {% endfor %}
+                </section>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

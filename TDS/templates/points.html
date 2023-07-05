@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    {% include 'links.html' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+
+</head>
+
+<body>
+    <div class="topnav">
+        <h2>Hello {{ user.username }}</h2>
+
+    </div>
+    <div class="container-fluid p-4 " style="padding-right:5% !important;">
+
+        <div class="row">
+            <div class="col-2 p-5" style="padding-top:0px !important; " id="myDIV">
+                <a href="Home"><button class="btn1 col-12 active" ><i class="bi bi-house-door-fill"></i> Home</button></a><br><br>
+                {% if user.is_superuser %}
+                    <a href="Add_App"><button class="btn1 col-12"><i class="bi bi-plus-lg"></i> Add Apps</button></a><br><br>
+                {% endif %}
+                {% if not user.is_superuser %}
+                    <a href="profile"><button class="btn1 col-12"><i class="bi bi-person-fill"></i> Profile</button></a><br><br>
+                    <a href="points"><button class="btn1 col-12"><i class="bi bi-database-fill"></i> Points</button></a><br><br>
+                    <a href="task"><button class="btn1 col-12"><i class="bi bi-calendar-check"></i> Task</button></a><br><br>
+                    {% endif %}
+                    <a href="logout"><button class="btn1 col-12" ><i class="bi bi-power"></i> Logout</button></a><br><br>
+            </div >
+
+            <div class="col-10 p-5 bg-light" >
+
+<!------------------------------------------------------------------------------------------------->
+                <section style="padding:0% 10%; ">
+
+                        <h1>Total Points: 400</h1>
+                        <table style="width: 100%;">
+                        <tr style="background-color:#20B2AA;">
+                            <th>App Name</th>
+                            <th>App Link</th>
+                            <th>App Category</th>
+                            <th>Points</th>
+
+                        </tr>
+                        {% for app in app_details %}
+                            <tr>
+                                <th>{{app.AppName}}</th>
+                                <th>{{app.AppLink}}</th>
+                                <th>{{app.AppCategory}}</th>
+                                <th>{{app.points}} Credited</th>
+
+                            </tr>
+                        {% endfor %}
+                        </table>
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
